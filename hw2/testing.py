@@ -77,11 +77,9 @@ class Logistic_Regression():
         temp = X[:, 5]+2
         feature_power = np.power(temp, 2)
         new_X = np.c_[new_X, feature_power]
-        new_X = np.c_[new_X, feature_power]
-        feature_power3 = np.power(temp, 3)
+        feature_power3 = np.power(temp, 4)
         new_X = np.c_[new_X, feature_power3]
-        new_X = np.c_[new_X, feature_power3]
-        new_X = np.c_[new_X, feature_power3]
+
 
         return new_X
 
@@ -178,7 +176,7 @@ valY = None
 #
 # print(X.shape)
 W = np.load('model.npy')
-b = -1.4528435549806331
+b = -1.4592051795473127
 # model.train(X, Y, valX, valY, 120)
 
 

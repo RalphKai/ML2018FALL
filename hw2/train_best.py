@@ -98,10 +98,7 @@ class Logistic_Regression():
         temp = X[:, 5]+2
         feature_power = np.power(temp, 2)
         new_X = np.c_[new_X, feature_power]
-        new_X = np.c_[new_X, feature_power]
-        feature_power3 = np.power(temp, 3)
-        new_X = np.c_[new_X, feature_power3]
-        new_X = np.c_[new_X, feature_power3]
+        feature_power3 = np.power(temp, 4)
         new_X = np.c_[new_X, feature_power3]
         # for n in range(X.shape[0]):
         #     for d in range(17, X.shape[1]):
@@ -301,7 +298,7 @@ b_min = 0
 epoch_min = 0
 Emin = np.inf
 
-model.train(X, Y, valX, valY, 120)
+model.train(X, Y, valX, valY, 102)
 print('b:', model.b)
 np.save('model.npy', model.W)
 
