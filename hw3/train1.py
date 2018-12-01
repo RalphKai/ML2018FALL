@@ -5,7 +5,7 @@ from keras.optimizers import Adam
 from keras.preprocessing.image import ImageDataGenerator
 # from keras.units.vis_utils import plot_model
 from keras.callbacks import ModelCheckpoint
-from keras.utils import plot_model
+# from keras.utils import plot_model
 
 # import matplotlib.pyplot as plt
 import pandas as pd
