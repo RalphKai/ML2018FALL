@@ -162,7 +162,7 @@ def train(X, Y, valX, valY):
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     if valX is not None:
-        model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=1, validation_data=(valX, valY)) # , callbacks= [checkpoint]
+        model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=100, validation_data=(valX, valY)) # , callbacks= [checkpoint]
     else:
         model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=258)
     return model
