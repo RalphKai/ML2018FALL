@@ -4,9 +4,9 @@ from keras.layers import Dense, Activation, Convolution2D, MaxPooling2D, Flatten
 from keras.optimizers import Adam
 from keras.preprocessing.image import ImageDataGenerator
 # from keras.units.vis_utils import plot_model
-from keras.callbacks import ModelCheckpoint
+# from keras.callbacks import ModelCheckpoint
 # from keras.utils import plot_model
-
+import sys
 # import matplotlib.pyplot as plt
 import pandas as pd
 import os
@@ -157,17 +157,17 @@ def train(X, Y, valX, valY):
     # checkpoint = ModelCheckpoint("", monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     # callbacks_list = [checkpoint]
     # adam = Adam(lr=0.003)
-    filepath = "selfmodel3_{epoch:02d}-{val_acc:.3f}.hdf5"
-    checkpoint = ModelCheckpoint(os.path.join('save_model', filepath) , monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
+    # filepath = "selfmodel3_{epoch:02d}-{val_acc:.3f}.hdf5"
+    # checkpoint = ModelCheckpoint(os.path.join('save_model', filepath) , monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
 
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     if valX is not None:
-        model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=100, validation_data=(valX, valY)) # , callbacks= [checkpoint]
+        model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=1, validation_data=(valX, valY)) # , callbacks= [checkpoint]
     else:
         model.fit_generator(datagen.flow(X, Y, batch_size=_batch_size), steps_per_epoch=(10*len(X)/_batch_size) , epochs=258)
     return model
 
-trainY, feature = load_data('train.csv')
+trainY, feature = load_data(sys.argv[1])
 trainX = feature2img(feature)
 # trainX, trainY = flip_aug(trainX, trainY)
 
@@ -206,17 +206,17 @@ if val:
     print('Eval:', Eval, '-----------')
 
 
-id1, test_X = load_data('test.csv')
-test_X = feature2img(test_X)
-y_predict = model.predict_classes(test_X)
-# y_predict = output_process(y_predict)
+# id1, test_X = load_data('test.csv')
+# test_X = feature2img(test_X)
+# y_predict = model.predict_classes(test_X)
+# # y_predict = output_process(y_predict)
 
-id = [x for x in range(len(y_predict))]
-id = np.array(id)
-output = np.c_[id.astype(int), y_predict.astype(int)]
+# id = [x for x in range(len(y_predict))]
+# id = np.array(id)
+# output = np.c_[id.astype(int), y_predict.astype(int)]
 
-print(model.summary())
-plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
-np.savetxt('submission.csv', output, delimiter=",", fmt='%s'+ ',%s', header='id'+',label', comments='')
+# # print(model.summary())
+# # plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
+# np.savetxt('submission.csv', output, delimiter=",", fmt='%s'+ ',%s', header='id'+',label', comments='')
 # plt.imshow(img_set[2])
 # plt.show()
