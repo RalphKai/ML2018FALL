@@ -129,9 +129,9 @@ def before_epoch(train_history, validation_history):
             # transforms.RandomCrop(100),
             # transforms.RandomApply([transforms.RandomGrayscale(3)], 0.2),
             transforms.RandomHorizontalFlip(),
-            transforms.RandomRotation(18),
-            transforms.RandomAffine(18, translate=(0.2,0.2)),
-            # transforms.ColorJitter(brightness=0.1, contrast=0.25, saturation=0.5, hue=0.1),
+            transforms.RandomRotation(20),
+            transforms.RandomAffine(20),
+            transforms.ColorJitter(brightness=0.1, contrast=0.25, saturation=0.5, hue=0.1),
             transforms.ToTensor(),
         # transforms.Normalize(mean = (0.5, 0.5, 0.5), std = (0.5, 0.5, 0.5))
         ])
