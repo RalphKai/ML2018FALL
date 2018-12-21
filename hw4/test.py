@@ -102,9 +102,9 @@ model1 = load_model("model_1.hdf5")
 model2 = load_model("model_2.hdf5")
 
 print('start predict--------------')
-y_predict1 = model.predict(test_X, batch_size=128)
-y_predict2 = model1.predict(test_X1, batch_size=128)
-y_predict3 = model2.predict(test_X2, batch_size=128)
+y_predict1 = model.predict(test_X, batch_size=256)
+y_predict2 = model1.predict(test_X1, batch_size=256)
+y_predict3 = model2.predict(test_X2, batch_size=256)
 # print('before argmax', y_predict1[:10], y_predict2[:10])
 y_predict = (y_predict1 + y_predict2 + y_predict3) / 3
 # y_predict = y_predict1
